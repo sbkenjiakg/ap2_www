@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>様々な入力フォーム</div>
+        <form>
+        
+            <ul>
+                <li>テキスト入力（テキスト）<br>
+                    <input type="text" name="txtInput"></li>
+                <li>テキスト入力（パスワード）<br>
+                    <input type="password" name="passInput"></li>
+                <li>複数行入力<br>
+                    <textarea name="textArea" cols="20" rows="3"></textarea></li>
+                <li>ラジオボタン1<br>
+                    <input type="radio" name="radio1" value="japanese" checked="checked"/>日本食<br>
+                    <input type="radio" name="radio1" value="western"/>洋食</li>
+                <li>ラジオボタン2<br>
+                    <input type="radio" name="radio2" value="baseball" checked="checked"/>野球<br>
+                    <input type="radio" name="radio2" value="football"/>サッカー</li>
+                <li>チェックボックス<br>
+                    <input type="checkbox" name="checkBtn1" value="rice"/>ごはん<br>
+                    <input type="checkbox" name="checkBtn2" value="bread"/>パン<br>
+                    <input type="checkbox" name="checkBtn3" value="pasta"/>パスタ<br></li>
+                <li>ドロップダウンリスト<br>
+                    <select name="language" size="1">
+                        <option value="Java">Java</option>
+                        <option value="C">C</option>
+                    </select></li>
+                <li>ファイル選択<br>
+                    <input type="file" name="selectFile"/>
+                </li>                   
+            </ul>
+            <input type="submit" name="btn" value="送信"/>
+        </form>
+    </body>
+</html>
