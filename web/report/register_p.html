@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>投手情報の入力</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form name="投手情報" action ="resister_p.jsp" method="post">
+            <table border="0">
+                <tr><th>名前</th><th><input name="名前" type="text"></th><th>先発<input type="checkbox" name="先発" value="ON" checked="checked" /></th>
+                </tr>
+                <tr><th>投球回</th>
+                    <th><input name="投球回１" type="text"></th>
+                    <th><select name="投球回２">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>/3
+                    </th>
+                </tr>
+                <tr><th>勝敗</th>
+                    <th>勝ち<input type="checkbox" name="勝ち" value="ON" checked="checked">
+                        負け<input type="checkbox" name="敗け" value="ON">
+                        セーブ<input type="checkbox" name="セーブ" value="ON">
+                    </th>
+                </tr>
+                <tr><th>被安打</th>
+                    <th><input type="text" name="被安打"></th>
+                </tr>
+                <tr><th>奪三振</th>
+                    <th><input type="text" name="三振"></th>
+                </tr>
+                <tr><th>四死球</th>
+                    <th><input type="text" name="四死球"></th>
+                </tr>
+                <tr><th>失点</th>
+                    <th><input type="text" name="失点"></th>
+                </tr>
+                <tr><th>自責点</th>
+                    <th><input type="text" name="自責点"></th>
+                </tr>
+                <tr><th colspan="2"><input type="submit" name="btn" value="送信"/></th>
+                    
+                </tr>
+            </table>
+
+        </form>
+    </body>
+</html>
