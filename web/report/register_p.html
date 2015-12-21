@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <form name="投手情報" action ="resister_p.jsp" method="post">
+        <form name="投手情報" action ="register_p.jsp" method="post">
             <table border="0">
                 <tr><th>名前</th><th><input name="名前" type="text"></th><th>先発<input type="checkbox" name="先発" value="ON" checked="checked" /></th>
                 </tr>
@@ -25,9 +25,9 @@ and open the template in the editor.
                     </th>
                 </tr>
                 <tr><th>勝敗</th>
-                    <th>勝ち<input type="checkbox" name="勝ち" value="ON" checked="checked">
-                        負け<input type="checkbox" name="敗け" value="ON">
-                        セーブ<input type="checkbox" name="セーブ" value="ON">
+                    <th>勝ち<input type="radio" name="勝敗" value="win">
+                        負け<input type="radio" name="勝敗" value="lose">
+                        セーブ<input type="radio" name="勝敗"  value="save">
                     </th>
                 </tr>
                 <tr><th>被安打</th>
