@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>野手情報の入力</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <font size ="3" color="red">！注意！</font><br/>
+        <font size="2">選手名は姓名の間を開けずに入力してください。</font><br/>
+        <font size="2">値は半角数字で入力してください。</font><br/>
+        <br/>
+        <form name="野手情報" action ="register_f.jsp" method="post">
+            <table border="0">
+                <tr><th>名前</th>
+                    <th><input name="name" type="text"></th>
+                </tr>
+                <tr><th>打席</th>   
+                    <th><input type="text" name="batnum" pattern="^[0-9]+$"></th>
+                </tr>
+                <tr><th>安打</th>
+                    <th><input type="text" name="hit" pattern="^[0-9]+$"></th>
+                </tr>
+                <tr><th>本塁打</th>
+                    <th><input type="text" name="homerun" pattern="^[0-9]+$"></th>
+                </tr>
+                <tr><th>打点</th>
+                    <th><input type="text" name="rbi" pattern="^[0-9]+$"></th>
+                </tr>
+                <tr><th>犠打</th>
+                    <th><input type="text" name="sacrifice" pattern="^[0-9]+$"></th>
+                </tr>
+                <tr><th>四死球</th>
+                    <th><input type="text" name="walks" pattern="^[0-9]+$"></th>
+                </tr>
+                <tr><th colspan="2"><input type="submit" name="btn" value="送信"/> <input type="reset" value="クリア" name="resetBtn"/></th>
+                    
+                </tr>
+            </table>
+
+        </form>
+        <hr>
+        <a href="main_page.html">戻る</a>
+    </body>
+</html>

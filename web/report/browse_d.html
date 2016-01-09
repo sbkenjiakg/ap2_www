@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form action="../browse_d" method="post">
+        ID<input type="text" name="id" pattern="^[0-9]+$">の<select name="player">
+            <option value="f">野手</option>
+            <option value="p">投手</option>
+        </select><br>
+        <input type="submit" name="btn" value="詳細を表示"/>
+        </form>
+        <hr>
+        <a href="main_page.html">戻る</a>
+    </body>
+</html>

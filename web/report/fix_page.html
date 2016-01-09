@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>修正ページ</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        登録されている情報を削除します。<br><hr/>
+        <form name="fix" action="../fix_page" method="POST">
+            <select name="player">
+                <option value="p">投手</option>
+                <option value="f">野手</option>
+            </select>
+            <br>
+        削除する選手のID：<input type="text" name="id" size="3" /><br>
+        <input type="submit" value="送信" name="submit" />
+        </form>
+        <hr>
+        <a href="main_page.html">戻る</a>
+    </body>
+</html>

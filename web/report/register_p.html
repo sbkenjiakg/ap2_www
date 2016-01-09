@@ -11,45 +11,53 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <font size ="3" color="red">！注意！</font><br/>
+        <font size="2">選手名は姓名の間を開けずに入力してください。</font><br/>
+        <font size="2">値は半角数字で入力してください。</font><br/>
+        <br/>
         <form name="投手情報" action ="register_p.jsp" method="post">
             <table border="0">
-                <tr><th>名前</th><th><input name="名前" type="text"></th><th>先発<input type="checkbox" name="先発" value="ON" checked="checked" /></th>
+                <tr><th>名前</th><th><input name="name" type="text"></th><th>先発<input type="checkbox" name="starter" value="ON" checked="checked" /></th>
                 </tr>
                 <tr><th>投球回</th>
-                    <th><input name="投球回１" type="text"></th>
-                    <th><select name="投球回２">
+                    <th><input name="times1" type="text" pattern="^[0-9]+$"></th>
+                    <th><select name="times2">
+                            <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
-                            <option value="3">3</option>
                         </select>/3
                     </th>
                 </tr>
                 <tr><th>勝敗</th>
-                    <th>勝ち<input type="radio" name="勝敗" value="win">
-                        負け<input type="radio" name="勝敗" value="lose">
-                        セーブ<input type="radio" name="勝敗"  value="save">
+                    <th colspan="2">
+                        勝ち<input type="radio" name="win" value="win" checked="checked">
+                        負け<input type="radio" name="win" value="lose">
+                        セーブ<input type="radio" name="win"  value="save">
+                        勝敗つかず<input type="radio" name="win" value="draw">
                     </th>
                 </tr>
                 <tr><th>被安打</th>
-                    <th><input type="text" name="被安打"></th>
+                    <th><input type="text" name="hit" pattern="^[0-9]+$"></th>
                 </tr>
                 <tr><th>奪三振</th>
-                    <th><input type="text" name="三振"></th>
+                    <th><input type="text" name="k" pattern="^[0-9]+$"></th>
                 </tr>
                 <tr><th>四死球</th>
-                    <th><input type="text" name="四死球"></th>
+                    <th><input type="text" name="walks" pattern="^[0-9]+$"></th>
                 </tr>
                 <tr><th>失点</th>
-                    <th><input type="text" name="失点"></th>
+                    <th><input type="text" name="runs_allowed" pattern="^[0-9]+$"></th>
                 </tr>
                 <tr><th>自責点</th>
-                    <th><input type="text" name="自責点"></th>
+                    <th><input type="text" name="runs_earned" pattern="^[0-9]+$"></th>
                 </tr>
-                <tr><th colspan="2"><input type="submit" name="btn" value="送信"/></th>
+                <tr><th><input type="submit" name="btn" value="送信"/></th><th><input type="reset" value="クリア" name="resetBtn"/></th>
                     
                 </tr>
             </table>
 
         </form>
+        <hr>
+        <a href="main_page.html">戻る</a>
     </body>
 </html>
