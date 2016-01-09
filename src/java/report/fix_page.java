@@ -20,10 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author kenji
+ * @author C0114112
  */
-@WebServlet(name = "register_p", urlPatterns = {"/register_p"})
-public class register_p extends HttpServlet {
+@WebServlet(name = "fix_page", urlPatterns = {"/fix_page"})
+public class fix_page extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,74 +41,41 @@ public class register_p extends HttpServlet {
         PrintWriter out = response.getWriter();
         Connection con = null;
         Statement stmt = null;
+        
         try {
-
-            String starter = request.getParameter("starter");
-            String name = request.getParameter("name");
-            int times1 = Integer.parseInt(request.getParameter("times1"));
-            int times2 = Integer.parseInt(request.getParameter("times2"));
-            String win = request.getParameter("win");
-            int hit = Integer.parseInt(request.getParameter("hit"));
-            int k = Integer.parseInt(request.getParameter("k"));
-            int walks = Integer.parseInt(request.getParameter("walks"));
-            int runs_allowed = Integer.parseInt(request.getParameter("runs_allowed"));
-            int runs_earned = Integer.parseInt(request.getParameter("runs_earned"));
-
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             String driverUrl = "jdbc:derby://localhost:1527/bbdata";
             con = DriverManager.getConnection(driverUrl, "db", "db");
             stmt = con.createStatement();
 
-            String sql = "select max(P_ID) as MAXID from P_DATA";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            //IDの設定
-            int max = 0;
-            while (rs.next()) {
-                max = rs.getInt("MAXID") + 1;
+            int id = Integer.parseInt(request.getParameter("id"));
+            String player = request.getParameter("player");
+            
+            String sql = "";
+            if (player.equals("p")) {
+                sql = "delete from P_DATA where P_ID = " + id;
+            } else if(player.equals("f")){
+                sql = "delete from F_DATA where F_ID = " + id;
             }
-
-            //クオリティスタートの判定
-            int qs = 0;
-            if (starter.equals("ON") && runs_earned < 4) {
-                qs = 1;
-            }
-
-            //投球回数の計上
-            int time = ((times1 * 3) + times2);
-
-            int wins = 0;
-            int save = 0;
-            int lose = 0;
-            if (win.equals("win")) {
-                wins++;
-            } else if (win.equals("lose")) {
-                lose++;
-            } else if (win.equals("save")) {
-                save++;
-            } else {
-
-            }
-
-            sql = "insert into P_DATA values(" + max + ",'" + name + "'," + qs + "," + time + "," + wins + "," + lose + "," + save + "," + hit + "," + k + "," + walks + "," + runs_allowed + "," + runs_earned + " )";
+            
             int count = stmt.executeUpdate(sql);
 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
-            out.println("<head><title>登録完了</title></head>");
+            out.println("<head><title>削除完了</title></head>");
             out.println("<body><hr/>");
-
+           
             if (count != 0) {
-                out.print("登録しました。<br>");
+                out.print("削除しました。<br>");
             } else {
-                out.println("登録に失敗しました。<br>");
+                out.println("失敗しました。<br>");
             }
-            out.print("<a href=\"/report/main_page.html\">トップに戻る</a><br>");
-            out.println("<hr/></body>");
+            out.print("<a href=\"report/main_page.html\">トップに戻る</a><br>");
+            out.println("</body>");
             out.println("</html>");
         } catch (Exception e) {
             out.println(e);
-        } finally {
+        }finally {
             //例外が発生したときでも確実にデータベースから切断
             if (stmt != null) {
                 try {
@@ -124,11 +91,12 @@ public class register_p extends HttpServlet {
                     throw new ServletException(e);
                 }
             }
+
         }
         out.close();
     }
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

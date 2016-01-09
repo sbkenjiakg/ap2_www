@@ -20,10 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author kenji
+ * @author C0114112
  */
-@WebServlet(name = "register_p", urlPatterns = {"/register_p"})
-public class register_p extends HttpServlet {
+@WebServlet(name = "browse_f", urlPatterns = {"/browse_f"})
+public class browse_f extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,79 +37,47 @@ public class register_p extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        PrintWriter out = response.getWriter();
         Connection con = null;
         Statement stmt = null;
+        PrintWriter out = response.getWriter();
         try {
-
-            String starter = request.getParameter("starter");
-            String name = request.getParameter("name");
-            int times1 = Integer.parseInt(request.getParameter("times1"));
-            int times2 = Integer.parseInt(request.getParameter("times2"));
-            String win = request.getParameter("win");
-            int hit = Integer.parseInt(request.getParameter("hit"));
-            int k = Integer.parseInt(request.getParameter("k"));
-            int walks = Integer.parseInt(request.getParameter("walks"));
-            int runs_allowed = Integer.parseInt(request.getParameter("runs_allowed"));
-            int runs_earned = Integer.parseInt(request.getParameter("runs_earned"));
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>野手情報</title>");
+            out.println("</head>");
+            out.println("<body>");
 
             Class.forName("org.apache.derby.jdbc.ClientDriver");
+
             String driverUrl = "jdbc:derby://localhost:1527/bbdata";
             con = DriverManager.getConnection(driverUrl, "db", "db");
             stmt = con.createStatement();
 
-            String sql = "select max(P_ID) as MAXID from P_DATA";
+            String sql = "select * from F_DATA";
+
             ResultSet rs = stmt.executeQuery(sql);
 
-            //IDの設定
-            int max = 0;
             while (rs.next()) {
-                max = rs.getInt("MAXID") + 1;
+                out.println("ID：" + rs.getInt("F_ID") + "<br>");
+                out.println("名前：" + rs.getString("F_NAME") + "<br>");
+                out.println("打数：" + rs.getInt("F_BATNUM") + "<br>");
+                out.println("安打：" + rs.getInt("F_HIT") + "<br>");
+                out.println("本塁打：" + rs.getInt("F_HOMERUN") + "<br>");
+                out.println("打点：" + rs.getInt("F_RBI") + "<br>");
+                out.println("犠打：" + rs.getInt("F_SACRIFICE") + "<br>");
+                out.println("四死球：" + rs.getInt("F_WALKS") + "<br>");
+                out.println("<hr>");
             }
-
-            //クオリティスタートの判定
-            int qs = 0;
-            if (starter.equals("ON") && runs_earned < 4) {
-                qs = 1;
-            }
-
-            //投球回数の計上
-            int time = ((times1 * 3) + times2);
-
-            int wins = 0;
-            int save = 0;
-            int lose = 0;
-            if (win.equals("win")) {
-                wins++;
-            } else if (win.equals("lose")) {
-                lose++;
-            } else if (win.equals("save")) {
-                save++;
-            } else {
-
-            }
-
-            sql = "insert into P_DATA values(" + max + ",'" + name + "'," + qs + "," + time + "," + wins + "," + lose + "," + save + "," + hit + "," + k + "," + walks + "," + runs_allowed + "," + runs_earned + " )";
-            int count = stmt.executeUpdate(sql);
-
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head><title>登録完了</title></head>");
-            out.println("<body><hr/>");
-
-            if (count != 0) {
-                out.print("登録しました。<br>");
-            } else {
-                out.println("登録に失敗しました。<br>");
-            }
-            out.print("<a href=\"/report/main_page.html\">トップに戻る</a><br>");
-            out.println("<hr/></body>");
+            rs.close();
+            
+            out.println("<a href=\"report/main_page.html\">戻る</a></body>");
             out.println("</html>");
+
         } catch (Exception e) {
             out.println(e);
+            throw new ServletException(e);
         } finally {
-            //例外が発生したときでも確実にデータベースから切断
+
             if (stmt != null) {
                 try {
                     stmt.close();
@@ -125,10 +93,11 @@ public class register_p extends HttpServlet {
                 }
             }
         }
+
         out.close();
     }
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
