@@ -103,7 +103,7 @@ public class register_p extends HttpServlet {
             } else {
                 out.println("登録に失敗しました。<br>");
             }
-            out.print("<a href=\"/report/main_page.html\">トップに戻る</a><br>");
+            out.print("<a href=\"report/main_page.html\">トップに戻る</a><br>");
             out.println("<hr/></body>");
             out.println("</html>");
         } catch (Exception e) {
