@@ -7,8 +7,6 @@ package wp01;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +17,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author C0114112
  */
-@WebServlet(name = "Servlet", urlPatterns = {"/Servlet"})
-public class Servlet extends HttpServlet {
+@WebServlet(name = "kadai4_1", urlPatterns = {"/kadai4_1"})
+public class kadai4_1 extends HttpServlet {
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,29 +32,9 @@ public class Servlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            Calendar cal = Calendar.getInstance();
-            //int hour = cal.get(Calendar.HOUR_OF_DAY);
-            //int minute = cal.get(Calendar.MINUTE);
-
-            SimpleDateFormat sdf = new SimpleDateFormat("hh時mm分ss秒");
-
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>WebApp</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Servlet at " + request.getContextPath() + "</h1>");
-            out.println(sdf.format(cal.getTime()) + "<br>");
-            //out.println("<a href = \"https://www.google.co.jp\" target = \"_blank\">Google</a><br>");
-            //out.println("<img border = \"2\" src = \"img_2.jpg\" alt =\" 画像\" width = \"500\">");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -70,6 +49,23 @@ public class Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet kadai4_1</title>");
+            out.println("</head>");
+            out.println("<body background = \"./404.png\">");
+            out.println("<h1>ようこそ！</h1></br>名前を入力してください。");
+            out.println("<form name =\"postname\" action=\"./kadai4_1\" method = \"post\">");
+            out.println("<input type=\"text\" name=\"name\" value=\"\" />");
+            out.println("<input type=\"submit\" value=\"登録\" name=\"register\" />");
+            out.println("</form>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     /**
@@ -84,6 +80,26 @@ public class Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        String name = request.getParameter("name") + "</br>";
+        
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet kadai4_1</title>");
+            out.println("</head>");
+            out.println("<body background = \"./404.png\">");
+            out.println("<h1>登録されました。</h1>"+ name+"</br>名前を追加してください。");
+            out.println("<form name =\"postname\" action=\"./kadai4_1\" method = \"post\">");
+            out.println("<input type=\"text\" name=\"name\" value=\"\" />");
+            out.println("<input type=\"submit\" value=\"登録\" name=\"register\" />");
+            out.println("</form>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     /**

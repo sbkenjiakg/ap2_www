@@ -7,8 +7,6 @@ package wp01;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author C0114112
  */
-@WebServlet(name = "Servlet", urlPatterns = {"/Servlet"})
-public class Servlet extends HttpServlet {
+@WebServlet(name = "AddCalc", urlPatterns = {"/AddCalc"})
+public class AddCalc extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,23 +33,26 @@ public class Servlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            Calendar cal = Calendar.getInstance();
-            //int hour = cal.get(Calendar.HOUR_OF_DAY);
-            //int minute = cal.get(Calendar.MINUTE);
-
-            SimpleDateFormat sdf = new SimpleDateFormat("hh時mm分ss秒");
-
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>WebApp</title>");
+            out.println("<title>Servlet AddCalc</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Servlet at " + request.getContextPath() + "</h1>");
-            out.println(sdf.format(cal.getTime()) + "<br>");
-            //out.println("<a href = \"https://www.google.co.jp\" target = \"_blank\">Google</a><br>");
-            //out.println("<img border = \"2\" src = \"img_2.jpg\" alt =\" 画像\" width = \"500\">");
+            try {
+                int num1 = Integer.parseInt(request.getParameter("num1"));
+                int num2 = Integer.parseInt(request.getParameter("num2"));
+
+                int sum = num1 + num2;
+
+                out.println(num1 + "＋" + num2 + "＝" + sum);
+
+            } catch (NullPointerException npe) {
+                out.println("値が設定されていません");
+            } catch (NumberFormatException nfe) {
+                out.println("数値を設定してください");
+            }
             out.println("</body>");
             out.println("</html>");
         }
